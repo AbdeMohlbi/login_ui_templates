@@ -30,7 +30,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final FocusNode _focusNode = FocusNode();
+  final FocusNode _focusNode1 = FocusNode();
+  final FocusNode _focusNode2 = FocusNode();
 
   final Uri _url = Uri.parse('https://github.com/AbdeMohlbi');
   Future<void> _launchUrl() async {
@@ -41,7 +42,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void dispose() {
-    _focusNode.dispose();
+    _focusNode1.dispose();
+    _focusNode2.dispose();
     super.dispose();
   }
 
@@ -49,7 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        _focusNode.unfocus();
+        _focusNode1.unfocus();
+        _focusNode2.unfocus();
       },
       child: Scaffold(
         appBar: AppBar(
@@ -108,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: TextFormField(
-                  focusNode: _focusNode,
+                  focusNode: _focusNode1,
                   showCursor: false,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(
@@ -131,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: TextFormField(
-                  focusNode: _focusNode,
+                  focusNode: _focusNode2,
                   showCursor: false,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(
