@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,6 +31,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final FocusNode _focusNode = FocusNode();
+
+  final Uri _url = Uri.parse('https://github.com/AbdeMohlbi');
+  Future<void> _launchUrl() async {
+    if (!await launchUrl(_url)) {
+      throw Exception('Could not launch $_url');
+    }
+  }
+
   @override
   void dispose() {
     _focusNode.dispose();
@@ -45,6 +54,27 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.grey.shade100,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text('made by '),
+              GestureDetector(
+                onTap: () {
+                  _launchUrl();
+                },
+                child: const Text(
+                  'AbdeMohlbi',
+                  style: TextStyle(
+                    color: Colors.blue, // Set the desired text color here
+                    fontSize:
+                        24.0, // You can also customize other text properties
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
         backgroundColor: Colors.grey[300],
         body: Center(
